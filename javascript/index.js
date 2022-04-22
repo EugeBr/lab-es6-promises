@@ -84,8 +84,8 @@ obtainInstruction('steak', 0)
     document.querySelector("#steak").innerHTML += `<li>${step8}</li>`
     document.querySelector("#steakImg").removeAttribute("hidden");
     const newStepSteak = document.createElement('li');
-          newStepSteak.innerText = "Steak is ready!";
-          document.querySelector('#steak').appendChild(newStepSteak);
+    newStepSteak.innerText = "Steak is ready!";
+    document.querySelector('#steak').appendChild(newStepSteak);
   })
   .catch(() => console.error('Something went wrong'))
 
@@ -109,8 +109,8 @@ async function makeBroccoli() {
     document.querySelector("#broccoli").innerHTML += `<li>${step7}</li>`
     document.querySelector("#broccoliImg").removeAttribute("hidden");
     const newStepBroc = document.createElement('li');
-          newStepBroc.innerText = "Broccoli is ready!";
-          document.querySelector('#broccoli').appendChild(newStepBroc);
+    newStepBroc.innerText = "Broccoli is ready!";
+    document.querySelector('#broccoli').appendChild(newStepBroc);
 }catch(error) {
   console.error('Something went wrong');
   }
@@ -118,3 +118,20 @@ async function makeBroccoli() {
 makeBroccoli();
 
 // Bonus 2 - Promise all
+
+const promises = [];
+
+for(let i=0; i<brusselsSprouts.length; i++) {
+  promises.push(obtainInstruction('brusselsSprouts', i));
+}
+
+Promise.all(promises)
+  .then(steps => {
+    steps.forEach((step) => {
+      document.querySelector("#brusselsSprouts").innerHTML += `<li>${step}</li>`
+    })
+    const newStepBrus = document.createElement('li');
+    newStepBrus.innerText = "Brussels sprouts are ready!";
+    document.querySelector('#brusselsSprouts').appendChild(newStepBrus);
+    document.querySelector("#brusselsSproutsImg").removeAttribute("hidden");
+  })
